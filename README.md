@@ -1,5 +1,6 @@
 # Installation
 
+* Setup webserver to handle ``PATH_INFO`` correctly (for [nginx](https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/))
 * Copy config.defaults.php to config.php
 * Set ``$oxidized_nodes_cache`` to a PHP writable file
 * Set ``$oxidized_url`` to URL of oxidized (e.g. http://127.0.0.1:8888)
