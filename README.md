@@ -10,7 +10,7 @@
 * Create a non-bare repository at the location of ``repo: /home/oxidized/backups``
 
 Set up hooks to fix Git repository at commit:
-``
+```
 hooks:
   check_out_index:
     type: exec
@@ -22,4 +22,4 @@ hooks:
     events: [post_store]
     cmd: 'git -C /home/oxidized/backups push -q'
     timeout: 60
-``
+```
