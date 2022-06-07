@@ -1,5 +1,6 @@
 # Installation
 
+* Allow ``exec`` and ``shell_exec`` in PHP
 * Setup webserver to handle ``PATH_INFO`` correctly (for [nginx](https://www.nginx.com/resources/wiki/start/topics/examples/phpfcgi/))
 * Copy config.defaults.php to config.php
 * Set ``$oxidized_nodes_cache`` to a PHP writable file
