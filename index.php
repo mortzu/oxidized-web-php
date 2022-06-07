@@ -134,14 +134,16 @@ if ($_SERVER['PATH_INFO'] == '/nodes.json') {
 
     foreach ($nodes as $node) {
         $output .= "<tr>\n";
-        $output .= "<td>" . $node['name'] . "</td>";
-        $output .= "<td>" . $node['model'] . "</td>";
-        $output .= "<td>" . $node['group'] . "</td>";
-        $output .= "<td>" . $node['status'] . "</td>";
-        $output .= "<td>" . $node['time'] . "</td>";
-        $output .= "<td>-</td>";
-        $output .= "<td><a href=\"/node/fetch/" . $node['name'] . "\">Show configuration</a> | ";
-        $output .= "<a href=\"/node/version?node_full=" . $node['name'] . "\">Show versions</a></td>";
+        $output .= "<td>" . $node['name'] . "</td>\n";
+        $output .= "<td>" . $node['model'] . "</td>\n";
+        $output .= "<td>" . $node['group'] . "</td>\n";
+        $output .= "<td>" . $node['status'] . "</td>\n";
+        $output .= "<td>" . $node['time'] . "</td>\n";
+        $output .= "<td>-</td>\n";
+        $output .= "<td>\n";
+        $output .= "<a href=\"/node/fetch/" . $node['name'] . "\" title=\"Show configuration\"><i class=\"bi bi-cloud-download-fill\"></i></a>\n";
+        $output .= "<a href=\"/node/version?node_full=" . $node['name'] . "\" title=\"Show versions\"><i class=\"bi bi-hdd-stack-fill\"></i></a>\n";
+        $output .= "</td>\n";
         $output .= "</tr>\n";
     }
 
