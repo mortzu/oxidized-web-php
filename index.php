@@ -139,7 +139,7 @@ if ($_SERVER['PATH_INFO'] == '/nodes.json') {
         $output .= "<td>" . $node['group'] . "</td>\n";
         $output .= "<td>" . $node['status'] . "</td>\n";
         $output .= "<td>" . $node['time'] . "</td>\n";
-        $output .= "<td>-</td>\n";
+        $output .= "<td>" . ((isset($node['mtime']) && $node['mtime'] != 'unknown') ? $node['mtime'] : '-') . "</td>\n";
         $output .= "<td>\n";
         $output .= "<a href=\"/node/fetch/" . $node['name'] . "\" title=\"Show configuration\"><i class=\"bi bi-cloud-download-fill\"></i></a>\n";
         $output .= "<a href=\"/node/version?node_full=" . $node['name'] . "\" title=\"Show versions\"><i class=\"bi bi-hdd-stack-fill\"></i></a>\n";
