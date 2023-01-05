@@ -28,7 +28,10 @@ elseif (isset($_GET['node']) && !empty($_GET['node']))
 if (isset($_GET['format']) && ($_GET['format'] == 'json'))
     $format = 'json';
 
-if ($_SERVER['PATH_INFO'] == '/nodes.json') {
+if (preg_match('/^\/node\/next\/(.+)/', $_SERVER['PATH_INFO'], $device)) {
+    file_get_contents($oxidized_url . '/node/next/' . $device[1]);
+    header('Location: /nodes');
+} elseif ($_SERVER['PATH_INFO'] == '/nodes.json') {
     $format = 'json';
 
     $output_store = array();
@@ -108,11 +111,7 @@ if ($_SERVER['PATH_INFO'] == '/nodes.json') {
         $output .= file_get_contents(__DIR__ . '/footer.html');
     } else
         $return_code = 500;
-} elseif (($_SERVER['PATH_INFO'] == '/nodes') ||
-          preg_match('/^\/node\/next\/(.+)/', $_SERVER['PATH_INFO'], $device)) {
-    if (isset($device[1]) && !empty($device[1]))
-        file_get_contents($oxidized_url . '/node/next/' . $device[1]);
-
+} elseif ($_SERVER['PATH_INFO'] == '/nodes') {
     $nodes = ((false !== $nodes_raw = file_get_contents($oxidized_url . '/nodes.json')) ? json_decode($nodes_raw, true) : array());
 
     $format = 'html';
