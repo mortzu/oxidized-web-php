@@ -108,7 +108,11 @@ if ($_SERVER['PATH_INFO'] == '/nodes.json') {
         $output .= file_get_contents(__DIR__ . '/footer.html');
     } else
         $return_code = 500;
-} elseif ($_SERVER['PATH_INFO'] == '/nodes') {
+} elseif (($_SERVER['PATH_INFO'] == '/nodes') ||
+          preg_match('/^\/node\/next\/(.+)/', $_SERVER['PATH_INFO'], $device)) {
+    if (isset($device[1]) && !empty($device[1]))
+        file_get_contents($oxidized_url . '/node/next/' . $device[1]);
+
     $nodes = ((false !== $nodes_raw = file_get_contents($oxidized_url . '/nodes.json')) ? json_decode($nodes_raw, true) : array());
 
     $format = 'html';
@@ -143,6 +147,7 @@ if ($_SERVER['PATH_INFO'] == '/nodes.json') {
         $output .= "<td>\n";
         $output .= "<a href=\"/node/fetch/" . $node['name'] . "\" title=\"Show configuration\"><i class=\"bi bi-cloud-download-fill\"></i></a>\n";
         $output .= "<a href=\"/node/version?node_full=" . $node['name'] . "\" title=\"Show versions\"><i class=\"bi bi-hdd-stack-fill\"></i></a>\n";
+        $output .= "<a href=\"/node/next/" . $node['name'] . "\" title=\"Update backup\"><i class=\"bi bi-arrow-clockwise\"></i></a>\n";
         $output .= "</td>\n";
         $output .= "</tr>\n";
     }
