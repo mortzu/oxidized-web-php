@@ -5,12 +5,10 @@ $node = '';
 
 $return_code = 0;
 
-if (!file_exists(__DIR__ . '/config.php')) {
-    error_log('config.php not found!');
-    exit(1);
-}
+require_once __DIR__ . '/config.defaults.php';
 
-require_once __DIR__ . '/config.php';
+if (file_exists(__DIR__ . '/config.php'))
+    require_once __DIR__ . '/config.php';
 
 if (!isset($_SERVER['PATH_INFO'])) {
     header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
